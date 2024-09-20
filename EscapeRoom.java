@@ -1,4 +1,3 @@
-
 public class EscapeRoom {
     public static void main(String[] args) {
         // welcome message
@@ -11,13 +10,17 @@ public class EscapeRoom {
 
         // size of move
         int m = 60;
+
         // individual player moves
         int px = 0;
         int py = 0;
         int score = 0;
-        String[] validCommands = { "right", "left", "up", "down", "r", "l", "u", "d",
-                "jump", "jr", "jumpleft", "jl", "jumpup", "ju", "jumpdown", "jd",
-                "pickup", "p", "quit", "q", "replay", "help", "?"};
+
+        String[] validCommands = { 
+            "right", "left", "up", "down", "r", "l", "u", "d",
+            "jump", "jr", "jumpleft", "jl", "jumpup", "ju", "jumpdown", "jd",
+            "pickup", "p", "quit", "q", "replay", "help", "?", "teleport", "tp"
+        };
 
         // set up game
         boolean play = true;
@@ -89,6 +92,12 @@ public class EscapeRoom {
                 case "?":
                     displayHelp();
                     break;
+                case "teleport":
+                case "tp":
+                    int newX = game.getRandomX();
+                    int newY = game.getRandomY();
+                    score += game.teleportPlayer(newX, newY);
+                    break;
             }
 
             if (game.isTrap(m, 0) || game.isTrap(-m, 0) || game.isTrap(0, m) || game.isTrap(0, -m)) {
@@ -120,6 +129,7 @@ public class EscapeRoom {
         System.out.println("pickup/p: Pick up a prize");
         System.out.println("quit/q: End the game");
         System.out.println("replay: Restart the game");
+        System.out.println("teleport/tp: Teleport to a random location");
         System.out.println("help/?: Display this help message");
     }
 }

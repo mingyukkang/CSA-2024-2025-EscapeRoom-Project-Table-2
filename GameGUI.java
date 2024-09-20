@@ -1,17 +1,14 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.Image;
 import java.awt.Point;
-
+import java.awt.Rectangle;
+import java.io.File;
+import java.util.Random;
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-
-import java.io.File;
-import javax.imageio.ImageIO;
-
-import java.util.Random;
 
 /**
  * A Game board on which to place and move players.
@@ -102,6 +99,7 @@ public class GameGUI extends JComponent
     totalWalls = 20;
     totalPrizes = 3;
     totalTraps = 5;
+    
   }
 
  /**
@@ -503,4 +501,22 @@ public class GameGUI extends JComponent
     return score;
   
   }
+ public int getRandomX() {
+    Random rand = new Random();
+    return rand.nextInt(GRID_W) * SPACE_SIZE + START_LOC_X;
 }
+
+public int getRandomY() {
+    Random rand = new Random();
+    return rand.nextInt(GRID_H) * SPACE_SIZE + START_LOC_Y;
+}
+
+public int teleportPlayer(int newX, int newY) {
+    x = newX;
+    y = newY;
+    playerLoc.setLocation(x, y);
+    repaint();
+    System.out.println("You teleported to (" + x + ", " + y + ")");
+    return 0; // You can adjust the score for teleporting if desired
+}
+} 
