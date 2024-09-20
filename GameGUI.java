@@ -517,6 +517,6 @@ public int teleportPlayer(int newX, int newY) {
     playerLoc.setLocation(x, y);
     repaint();
     System.out.println("You teleported to (" + x + ", " + y + ")");
-    return 0; // You can adjust the score for teleporting if desired
+    return 0; 
 }
 } 
